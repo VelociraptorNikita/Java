@@ -5,6 +5,6 @@ import ru.ystu.book.domain.Book;
 
 import java.util.List;
 
-public interface BookRepository  extends JpaRepository<Book, Long> {
+public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findAllByNameContains(String name);
 }

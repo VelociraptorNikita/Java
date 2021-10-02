@@ -6,24 +6,23 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "book")
-public class Book {
+@Table(name = "Cart")
+public class Cart {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column
     private Long id;
+    @JoinColumn(name = "bookid")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Book book;
     @Column
-    private String name;
-    @Column
-    private String year;
+    private byte count_book;
+    @JoinColumn(name = "userid")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 }
-
-
-
-

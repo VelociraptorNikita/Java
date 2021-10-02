@@ -29,9 +29,13 @@ public class BookController {
     @GetMapping("/book")
     public String getBook(Model model){
         model.addAttribute("books", repository.findAll());
-        //log.info(book);
-        //log.info(model);
         return "books";
+    }
+
+    @PostMapping("/book")
+    public String addBook(Book book){
+        repository.save(book);
+        return "redirect:/book";
     }
 
     @GetMapping("/book/{id}")
@@ -40,22 +44,18 @@ public class BookController {
         if(optionalBook.isEmpty())
             throw new FileNotFoundException();
         model.addAttribute("book", optionalBook.get());
-        //log.info(book);
-        //log.info(model);
         return "book";
     }
 
     @GetMapping("/book/byname/{name}")
     public String getBookByName(@PathVariable String name, Model model){
         model.addAttribute("books", repository.findAllByNameContains(name));
-        //log.info(book);
-        //log.info(model);
         return "books";
     }
 
     @GetMapping("/book/delete/{id}")
-    public String delete(@PathVariable Long id, Model model){
-        Optional<Book> optionalBook = repository.findById(id);
-        return "books";
+    public String delete(@PathVariable Long id){
+        repository.deleteById(id);
+        return "redirect:/book";
     }
 }

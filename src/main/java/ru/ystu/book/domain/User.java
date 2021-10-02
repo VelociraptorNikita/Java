@@ -12,8 +12,8 @@ import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "book")
-public class Book {
+@Table(name = "User")
+public class User {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)
     @Column
@@ -21,8 +21,12 @@ public class Book {
     @Column
     private String name;
     @Column
-    private String year;
+    private String login;
+    @Column
+    private String pass;
+
 }
+
 
 
 
